@@ -1,22 +1,9 @@
-import React, { useRef,useState, useEffect  } from 'react';
+import React, { useRef  } from 'react';
 import { AppContainer, Header, Title, Subtitle, Card, Button, OutputStyled, Line } from './App.styled.jsx'; 
 
 //This function will insert a new input line into the output field once the received text is not empty and more then 10s passed since last input
-const useDebounce = (value, delay) => {
-    const [debouncedValue, setDebouncedValue] = useState(value);
-
-    useEffect(() => {
-        const handler = setTimeout(() => {
-            setDebouncedValue(value);
-        }, delay);
-
-        // Cleanup function to cancel the timeout if value changes
-        return () => {
-            clearTimeout(handler);
-        };
-    }, [value, delay]);
-
-    return debouncedValue; // ✅ Actually return the debounced value
+function useDebounce(value, delay) {
+    return value
 };
 
 function App() {
@@ -24,7 +11,7 @@ function App() {
   const counter = useRef(0);
   const [input, setInput] = React.useState('');
   const debouncedOutput = useDebounce(input, 3000);
-  console.log('debouncedOutput', debouncedOutput);
+  
   
   return (
     <AppContainer>
