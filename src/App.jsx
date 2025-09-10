@@ -1,9 +1,23 @@
 import React, { useRef  } from 'react';
 import { AppContainer, Header, Title, Subtitle, Card, Button, OutputStyled, Line } from './App.styled.jsx'; 
 
-//This function will insert a new input line into the output field once the received text is not empty and more then 10s passed since last input
+/**
+ * A custom hook that delays updating the value until after a specified delay period
+ * @param {*} value - The value to debounce
+ * @param {*} delay - The delay period in milliseconds
+ * @returns {*} - The debounced value
+ */
 function useDebounce(value, delay) {
     return value
+};
+
+/**
+ * This hook will mimic the useState hook
+ * @param {*} value 
+ * @returns {Array} - The current state and a function to update it
+ */
+function useStateNG(value) {
+    return [value, () => {}];
 };
 
 function App() {
