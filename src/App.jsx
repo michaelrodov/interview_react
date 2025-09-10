@@ -7,7 +7,7 @@ import { AppContainer, Header, Title, Subtitle, Card, Button, OutputStyled, Line
  * @param {*} delay - The delay period in milliseconds
  * @returns {*} - The debounced value
  */
-function useDebounce(value, delay) {
+function useNotSoFastHook(value, delay) {
     return value
 };
 
@@ -16,7 +16,7 @@ function useDebounce(value, delay) {
  * @param {*} value 
  * @returns {Array} - The current state and a function to update it
  */
-function useStateNG(value) {
+function useStoreMyValuesHook(value) {
     return [value, () => {}];
 };
 
@@ -24,7 +24,7 @@ function App() {
   const inputRef = useRef();  
   const counter = useRef(0);
   const [input, setInput] = React.useState('');
-  const debouncedOutput = useDebounce(input, 3000);
+  const debouncedOutput = useNotSoFastHook(input, 3000);
   
   
   return (
