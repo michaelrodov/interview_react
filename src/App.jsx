@@ -1,5 +1,7 @@
 import React, { useRef  } from 'react';
 import { AppContainer, Header, Title, Subtitle, Card, Button, OutputStyled, Line } from './App.styled.jsx'; 
+import { InfiniteScrollList } from './InfiniteScrollTable/InfiniteTable.jsx';
+import data from './mockEmployees.json';
 
 /**
  * A custom hook that delays updating the value until after a specified delay period
@@ -53,6 +55,9 @@ function App() {
         <OutputStyled style={{border: 'solid 1px', marginTop: '1rem'}}>
             {debouncedOutput}
         </OutputStyled>
+      </Card>
+      <Card>
+        <InfiniteScrollList data={data} />
       </Card>
     </AppContainer>
   );

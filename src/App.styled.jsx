@@ -14,7 +14,27 @@ export const AppContainer = styled.div`
     :not(:last-child) {
     margin-bottom: ${props => props.theme.spacing.xl};
   }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: ${props => props.theme.spacing.md};
+  }
 
+  th {
+    text-align: left;
+    padding: ${props => props.theme.spacing.sm};
+    border-bottom: 2px solid ${props => props.theme.colors.border};
+  }
+
+  tr {
+    margin: 0.25rem;
+    &:nth-child(even) {
+      background-color: ${props => props.theme.colors.infoBg};
+    }
+    &:nth-child(odd) {
+      background-color: ${props => props.theme.colors.lightBg};
+    }
+  }
 `;
 
 export const Header = styled.header`
