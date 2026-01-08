@@ -11,6 +11,10 @@ export const AppContainer = styled.div`
   align-items: center;
   justify-content: center;
   padding: ${props => props.theme.spacing.md};
+    :not(:last-child) {
+    margin-bottom: ${props => props.theme.spacing.xl};
+  }
+
 `;
 
 export const Header = styled.header`
@@ -36,7 +40,7 @@ export const Card = styled.div`
   border-radius: ${props => props.theme.borderRadius.medium};
   padding: ${props => props.theme.spacing.xl};
   box-shadow: ${props => props.theme.shadows.medium};
-  max-width: 600px;
+  max-width: 70vw;
   width: 100%;
 `;
 
