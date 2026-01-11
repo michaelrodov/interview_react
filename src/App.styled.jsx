@@ -14,15 +14,25 @@ export const AppContainer = styled.div`
     :not(:last-child) {
     margin-bottom: ${props => props.theme.spacing.xl};
   }
+  /* BUG: Table layout overflow issue - table extends beyond container */
   table {
     width: 100%;
     border-collapse: collapse;
     margin-top: ${props => props.theme.spacing.md};
+    table-layout: fixed;
+    min-width: 1200px;
+  }
+
+  th, td {
+    text-align: left;
+    padding: ${props => props.theme.spacing.sm};
+    border-bottom: 2px solid ${props => props.theme.colors.border};
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
   }
 
   th {
-    text-align: left;
-    padding: ${props => props.theme.spacing.sm};
     border-bottom: 2px solid ${props => props.theme.colors.border};
   }
 
@@ -62,6 +72,68 @@ export const Card = styled.div`
   box-shadow: ${props => props.theme.shadows.medium};
   max-width: 70vw;
   width: 100%;
+  overflow: hidden; /* BUG: Part of layout issue - hides overflow instead of allowing scroll */
+
+  /* BUG: Multiple conflicting selectors targeting border-color and background-color */
+
+  /* Specificity: (0,0,1) - Type selector */
+  input {
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 18px;
+    width: 100%;
+    background-color: #f0f0f0;
+    border-color: #dddddd;
+  }
+
+  /* Specificity: (0,1,1) - Class + type */
+  input.text-input {
+    background-color: #e8f4f8;
+    border-color: #4a90e2;
+  }
+
+  /* Specificity: (0,2,1) - Multiple classes + type */
+  input.text-input.user-input {
+    background-color: #fff3cd;
+    border-color: #ffc107;
+  }
+
+  /* Specificity: (0,1,2) - Descendant combinator */
+  &.input-card input {
+    background-color: #d4edda;
+    border-color: #28a745;
+  }
+
+  /* Specificity: (0,2,2) - Class + descendant + class */
+  &.input-card input.user-input {
+    background-color: #cce5ff;
+    border-color: #004085;
+  }
+
+  /* Specificity: (0,1,1) - Attribute selector */
+  input[data-input-type="text"] {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+  }
+
+  /* Specificity: (0,2,1) - Multiple attribute selectors */
+  input[data-input-type="text"][data-priority="high"] {
+    background-color: #d1ecf1;
+    border-color: #0c5460;
+  }
+
+  /* Specificity: (0,1,1) - Pseudo-class */
+  input:focus {
+    border-color: #6610f2 !important;
+    outline: none;
+    background-color: #e7e3fc !important;
+  }
+
+  /* Specificity: (1,0,1) - ID selector (highest non-inline) */
+  #textInputField {
+    background-color: #ffeaa7;
+    border-color: #fd79a8;
+  }
 `;
 
 export const Button = styled.button`

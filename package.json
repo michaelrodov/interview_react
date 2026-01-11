@@ -7,9 +7,19 @@
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "dev": "vite"
+    "dev": "vite",
+    "server": "cd server && npm run dev",
+    "server:install": "cd server && npm install",
+    "dev:all": "concurrently \"npm run dev\" \"npm run server\"",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage"
   },
-  "keywords": ["react", "styled-components", "vite"],
+  "keywords": [
+    "react",
+    "styled-components",
+    "vite"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -18,9 +28,16 @@
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.0.8"
+    "concurrently": "^8.2.2",
+    "jsdom": "^27.4.0",
+    "vite": "^5.0.8",
+    "vitest": "^4.0.16"
   }
 }

@@ -25,20 +25,15 @@ const OneRecord = ({item}) => {
     );
 }
 
-export const InfiniteScrollList = ({isLoading, data}) => {
+export const Table = ({isLoading, data}) => {
     if (isLoading) {
         return <div>Loading...</div>;
     }
     
-    const [startInx, setStartInx] = useState(0);
-    
-    const isLastPage = startInx + NUMBER_OF_RECORDS_TO_LOAD >= data.length;
-
     //  attention! shallow copy so objects are ref by pointer
-    const displayedData = useMemo(() => {
-        const endIndex = startInx + NUMBER_OF_RECORDS_TO_LOAD;
-        return data.slice(0, (endIndex > data.length) ? data.length : endIndex);
-    },[data, startInx]);
+    const displayedData = useMemo(() => {        
+        return data;
+    },[data]);
 
     // Component implementation
     // todo protect from empty data
@@ -58,12 +53,6 @@ export const InfiniteScrollList = ({isLoading, data}) => {
                 ))}
             </tbody>
             </table>
-            <Button 
-                onClick={() => setStartInx(startInx + NUMBER_OF_RECORDS_TO_LOAD)} 
-                disabled={isLastPage}
-            >
-                Load Next
-            </Button>
         </div>
     );
 }

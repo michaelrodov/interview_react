@@ -1,86 +1,83 @@
-# Simple React Project
+# React Debugging Challenge
 
-A simple React application built with modern tools and best practices.
+Welcome! This is a technical interview exercise designed to assess your React debugging skills. The application is a simple React project with an input field and an infinite scroll table, but it contains **4 intentional bugs** that you need to identify and fix.
 
-## Features
-
-- **React 18** - Latest version of React with modern hooks
-- **Styled Components** - CSS-in-JS styling with theme support
-- **Vite** - Fast development server and build tool
-- **Theme Provider** - Consistent styling across components
-- **Responsive Design** - Mobile-friendly layout
-
-## Project Structure
-
-```
-simple-react-project/
-├── public/
-├── src/
-│   ├── App.jsx          # Main application component
-│   ├── main.jsx         # Application entry point
-│   ├── theme.js         # Theme configuration
-│   └── index.css        # Global styles
-├── index.html           # HTML template
-├── package.json         # Dependencies and scripts
-├── vite.config.js       # Vite configuration
-└── README.md           # This file
-```
-
-## Getting Started
+## Setup Instructions
 
 1. **Install dependencies:**
    ```bash
    npm install
+   npm run server:install
    ```
 
 2. **Start the development server:**
    ```bash
-   npm run dev
+   npm run dev:all
    ```
 
-3. **Build for production:**
-   ```bash
-   npm run build
-   ```
+3. **Open the application in your browser** at the URL shown in the terminal (typically `http://localhost:3000`)
 
-4. **Preview production build:**
-   ```bash
-   npm run preview
-   ```
+## Your Mission
 
-## Technologies Used
+Find and fix **bugs** in this codebase:
 
-- **React** - UI library
-- **Styled Components** - CSS-in-JS styling
-- **Vite** - Build tool and dev server
-- **JavaScript (ES6+)** - Modern JavaScript features
+### 1.
 
-## Theme System
+There's an issue with filtering users by name
 
-The project uses a centralized theme system with styled-components:
+**How to reproduce:**
+- Type "yyy" in the input field
+- the response will be delayed and eventually the application will crash
 
-- Colors (primary, secondary, success, etc.)
-- Typography (fonts, sizes)
-- Spacing (margins, padding)
-- Border radius and shadows
+**Expected behavior:** The table should be filtered by names that contain input values
 
-All styled components have access to the theme via props:
+---
 
-```jsx
-const Button = styled.button`
-  background-color: ${props => props.theme.colors.primary};
-  padding: ${props => props.theme.spacing.md};
-`;
-```
+### 2.
+   There are too many requests to the backend which is slow, we need to make teh application more performant.
+   Suggest a way to do this.
 
-## Development
+### 3.
+   The application is loading too many records as once, implement a pagination to reduce the amound of records to be displayed at once.
 
-The project is set up with:
-- Hot module replacement for fast development
-- Modern ES6+ syntax support
-- Styled components with theme provider
-- Responsive design principles
+### 4.
+After above bugs were fixed:
+The application still performs extra re-renders, find the root cause and fix it.
 
-## Browser Support
+**Expected behavior:** Table rows should only re-render when their data actually changes.
 
-This project supports all modern browsers that support ES6+ features.
+---
+
+### 5. CSS Specificity Bug
+**Category:** CSS Cascade & Specificity
+
+**Requirements:**
+- Input must have the following styles in **normal state**:
+  - `background-color: white`
+  - `border: 1px solid lightgrey`
+
+- Input must have the following styles in **focus state**:
+  - `background-color: white`
+  - `border-color: red`
+
+- **No `!important` flags** should be used for input styling
+- DevTools should show only 1-2 CSS rules applying (not 10+)
+- Use theme colors where applicable (`${props => props.theme.colors.*}`)
+
+---
+
+### 6. CSS Layout Bug
+**Category:** Layout & Overflow
+
+The table has layout issues where content is being clipped instead of displaying properly.
+
+**How to identify:**
+- Scroll through the table data
+- Look for long email addresses and other content
+- Notice if the table extends beyond its container or content is cut off
+
+**Expected behavior:** All table content should be visible, either fitting within the container or with proper scrolling.
+
+---
+
+Good luck! 🚀
