@@ -63,7 +63,7 @@ function App() {
       <Header>
         <Title>Simple React Project</Title>
         <Subtitle>Built with React, Vite, and Styled Components</Subtitle>
-        <button id='rerender_button' style={{border: 'solid 1px', padding: '0.5rem 1rem'}} onClick={() => setCounter(counter + 1)}>Render</button>
+        <Button id='rerender_button' style={{border: 'solid 1px', padding: '0.5rem 1rem'}} onClick={() => setCounter(counter + 1)}>Render</Button>
       </Header>
       <Card className="input-card">
         <div>

@@ -21,7 +21,7 @@ const OneRecord = ({item}) => {
         </td>
     ))
     return(
-        <tr><td><button onClick={() => { item.name = "Clicked"; }}>Check</button></td>{itemColumnsList}</tr>
+        <tr>{itemColumnsList}</tr>
     );
 }
 
@@ -30,6 +30,7 @@ export const Table = ({isLoading, data}) => {
     if (isLoading) {
         return <div>Loading...</div>;
     }
+    const [ren, setRen] = useState(0);
     
     const headers = Object.keys(data[0]).map((key) => { 
         return (
@@ -40,6 +41,7 @@ export const Table = ({isLoading, data}) => {
 
     return (
         <div>
+            <Button onClick={() => { setRen(ren + 1); }}>just button</Button>
             <table>
             <thead>
                 <tr>
