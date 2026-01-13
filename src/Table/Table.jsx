@@ -1,7 +1,7 @@
 import { useMemo, useState, useRef } from "react";
 import { Button } from "../App.styled.jsx";
 
-const NUMBER_OF_RECORDS_TO_LOAD = 5;
+
 const OneRecord = ({item}) => {
     const renderCount = useRef(0);
     renderCount.current += 1;
@@ -21,23 +21,22 @@ const OneRecord = ({item}) => {
         </td>
     ))
     return(
-        <tr>{itemColumnsList}</tr>
+        <tr><td><button onClick={() => { item.name = "Clicked"; }}>Check</button></td>{itemColumnsList}</tr>
     );
 }
 
 export const Table = ({isLoading, data}) => {
+    
     if (isLoading) {
         return <div>Loading...</div>;
     }
     
-    //  attention! shallow copy so objects are ref by pointer
-    const displayedData = useMemo(() => {        
-        return data;
-    },[data]);
-
-    // Component implementation
-    // todo protect from empty data
-    const headers = Object.keys(data[0]).map((key) => (<th className={key}>{key}</th>));
+    const headers = Object.keys(data[0]).map((key) => { 
+        return (
+                <th className={key}>{key}</th>
+            )
+            }
+        );
 
     return (
         <div>
@@ -48,8 +47,8 @@ export const Table = ({isLoading, data}) => {
                 </tr>
             </thead>
             <tbody>
-                {displayedData.map((item, index) => (
-                    <OneRecord key={index} item={item} />
+                {data.map((item, index) => (
+                    <OneRecord item={item} />
                 ))}
             </tbody>
             </table>

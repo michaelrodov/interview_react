@@ -18,7 +18,7 @@ function useStoreMyValuesHook(value) {
 
 function App() {
   const inputRef = useRef();
-  const counter = useRef(0);
+  const [counter, setCounter] = useState(0);
   const [input, setInput] = React.useState('');
   const [employees, setEmployees] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -39,16 +39,15 @@ function App() {
       });
   }, []);
 
-  const handleEcho = async (value) => {
+  const searchEmployees = async (value) => {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/employees/search', {
-        method: 'POST',
+      const response = await fetch(`/api/employees/search?q=${value}`, {
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ term: value }),
+        }        
       });
 
       const data = await response.json();      
@@ -67,22 +66,22 @@ function App() {
       <Header>
         <Title>Simple React Project</Title>
         <Subtitle>Built with React, Vite, and Styled Components</Subtitle>
+        <button style={{border: 'solid 1px'}} onClick={() => setCounter(counter + 1)}>Click</button>
       </Header>
-      
       <Card className="input-card">
         <div>
-          <span>Type to search employees by name:</span>        
+          <span>Sticky panel</span>        
           <input
           id={'textInputField'}
           className="text-input user-input"
           data-input-type="text"
           data-priority="high"
           onChange={() => {
-            handleEcho(inputRef.current.value);
+            searchEmployees(inputRef.current.value);
           }}
+          placeholder="Search employees..."
           ref={inputRef}
-          type="text"
-          placeholder="Type something..."
+          type="text"        
           style={{
             width: '100%',
             padding: '0.5rem',

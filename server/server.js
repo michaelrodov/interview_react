@@ -23,8 +23,8 @@ app.get('/api/employees', (req, res) => {
 });
 
 // Endpoint that receives a string, waits 3 seconds, and returns it
-app.post('/api/employees/search', async (req, res) => {
-  const { term } = req.body;
+app.get('/api/employees/search', async (req, res) => {
+  const term = req.query.q;
 
   if (!term) {
     return res.status(400).json({ error: 'Term is required' });
