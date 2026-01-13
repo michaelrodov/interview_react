@@ -55,9 +55,6 @@ function App() {
       setLoading(false);
     } catch (error) {
       console.error('Error calling echo endpoint:', error);
-      setEchoResult('Error occurred');
-    } finally {
-      setEchoLoading(false);
     }
   };
   
@@ -66,7 +63,7 @@ function App() {
       <Header>
         <Title>Simple React Project</Title>
         <Subtitle>Built with React, Vite, and Styled Components</Subtitle>
-        <button style={{border: 'solid 1px'}} onClick={() => setCounter(counter + 1)}>Click</button>
+        <button id='rerender_button' style={{border: 'solid 1px', padding: '0.5rem 1rem'}} onClick={() => setCounter(counter + 1)}>Render</button>
       </Header>
       <Card className="input-card">
         <div>
